@@ -1,1 +1,435 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Cinematic Valentine's Day</title>\n    <style>\n        body {\n            margin: 0;\n            padding: 0;\n            overflow: hidden;\n            background: linear-gradient(135deg, #ff7ecb, #e3a3be);\n            color: white;\n            font-family: 'Arial', sans-serif;\n            position: relative;\n            height: 100vh;\n        }\n        @keyframes heartbeat {\n            0%, 100% { transform: scale(1); }\n            50% { transform: scale(1.1); }\n        }\n        .heart {\n            position: absolute;\n            left: 50%;\n            top: 50%;\n            width: 100px;\n            height: 100px;\n            background: red;\n            clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 30%);\n            animation: heartbeat 1s infinite;\n            glow: 0 0 20px red;\n        }\n        .countdown {\n            position: absolute;\n            top: 10%;\n            left: 50%;\n            transform: translateX(-50%);\n            font-size: 3em;\n        }\n        .message {\n            position: absolute;\n            bottom: 50%;\n            left: 50%;\n            transform: translate(-50%, 50%);\n            font-size: 2em;\n            opacity: 0;\n            animation: typing 4s forwards;\n        }\n        @keyframes typing {\n            from { width: 0; opacity: 0; }\n            to { width: 100%; opacity: 1; }\n        }\n        /* Add styles for shooting stars, rose rain, and confetti here... */\n    </style>\n</head>\n<body>\n    <div class="countdown" id="countdown">3...</div>\n    <div class="heart"></div>\n    <div class="message" id="message">Love you endlessly</div>\n    <script>\n        let countdown = 3;\n        const countdownElement = document.getElementById('countdown');\n        const messageElement = document.getElementById('message');\n        const timer = setInterval(() => {\n            countdown--;\n            if (countdown <= 0) {\n                clearInterval(timer);\n                countdownElement.style.display = 'none';\n                messageElement.style.opacity = 1;\n                // Add additional animations for gifts and confetti here...\n            } else {\n                countdownElement.innerText = countdown + '...';\n            }\n        }, 1000);\n    </script>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 My Love - Salma</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+#stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+.star { position: absolute; width: 1px; height: 1px; background: white; border-radius: 50%; }
+
+#intro {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.95);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  z-index: 999;
+  animation: fadeOut 1s ease-in forwards 3s;
+}
+
+@keyframes fadeOut { to { opacity: 0; pointer-events: none; } }
+
+.countdown { font-size: 120px; font-weight: bold; color: #ff1493; animation: pulse 1s infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+#main {
+  position: relative; width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  z-index: 10; opacity: 0;
+  animation: fadeIn 1s ease-in 3s forwards;
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+.heart-container {
+  position: relative; width: 300px; height: 300px;
+  display: flex; justify-content: center; align-items: center;
+  margin-bottom: 40px;
+  animation: heartZoom 1.5s ease-out;
+  filter: drop-shadow(0 0 50px rgba(255,20,147,0.8));
+}
+
+@keyframes heartZoom { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.heart {
+  width: 200px; height: 200px;
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+  position: relative;
+  border-radius: 100px 100px 0 0;
+  transform: rotate(-45deg);
+  animation: beat 1.2s ease-in-out infinite;
+}
+
+.heart:before,
+.heart:after {
+  content: '';
+  width: 200px;
+  height: 200px;
+  background: inherit;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart:before { top: -100px; }
+.heart:after { left: 100px; }
+
+@keyframes beat {
+  0%, 100% { transform: rotate(-45deg) scale(1); }
+  50% { transform: rotate(-45deg) scale(1.15); }
+}
+
+.name {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%) rotate(45deg);
+  font-size: 40px; font-weight: bold;
+  text-shadow: 0 0 30px rgba(255,255,255,0.9);
+  color: white; z-index: 20;
+}
+
+#message {
+  margin-top: 40px; font-size: 32px;
+  color: #fff; text-shadow: 0 0 20px rgba(255,182,193,0.8);
+  min-height: 40px; letter-spacing: 1px;
+}
+
+.buttons {
+  margin-top: 50px; display: flex; gap: 25px;
+  justify-content: center; flex-wrap: wrap;
+}
+
+.btn {
+  padding: 16px 40px; border: none;
+  border-radius: 50px; font-size: 18px;
+  cursor: pointer; transition: all 0.3s;
+  font-weight: bold; letter-spacing: 1px;
+}
+
+.yes {
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+  color: white;
+  box-shadow: 0 0 40px rgba(255,20,147,0.6);
+}
+
+.yes:hover { transform: scale(1.1); box-shadow: 0 0 60px rgba(255,20,147,0.9); }
+.yes:active { transform: scale(0.95); }
+
+.no {
+  background: rgba(255,255,255,0.15);
+  color: white; border: 2px solid rgba(255,182,193,0.5);
+  position: relative;
+}
+
+#gift {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 120px; opacity: 0;
+  pointer-events: none;
+  animation: giftBounce 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+
+@keyframes giftBounce {
+  0% { transform: translate(-50%,-50%) scale(0) rotate(-180deg); opacity: 0; }
+  60% { transform: translate(-50%,-50%) scale(1.2) rotate(20deg); opacity: 1; }
+  100% { transform: translate(-50%,-50%) scale(1) rotate(0); opacity: 1; }
+}
+
+.particle {
+  position: fixed; pointer-events: none;
+  animation: particleFloat 3s ease-out forwards;
+}
+
+@keyframes particleFloat {
+  0% { transform: translate(0,0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tx),var(--ty)) scale(0); opacity: 0; }
+}
+
+.rose-rain { position: fixed; top: -50px; font-size: 40px; animation: roseRain 4s linear forwards; opacity: 0.8; }
+@keyframes roseRain { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+
+.sparkle { position: fixed; pointer-events: none; animation: sparkleFloat 2s ease-out forwards; }
+@keyframes sparkleFloat { to { opacity: 0; transform: translate(var(--tx),var(--ty)); } }
+
+.heart-trail { position: fixed; pointer-events: none; animation: trailFloat 1.5s ease-out forwards; }
+@keyframes trailFloat { to { opacity: 0; transform: translate(var(--tx),var(--ty)); } }
+
+@media (max-width: 768px) {
+  .heart { width: 140px; height: 140px; }
+  .heart:before, .heart:after { width: 140px; height: 140px; }
+  .heart:before { top: -70px; }
+  .heart:after { left: 70px; }
+  .name { font-size: 28px; }
+  #message { font-size: 22px; }
+  .btn { padding: 12px 30px; font-size: 16px; }
+  .heart-container { width: 200px; height: 200px; }
+}
+
+@media (max-width: 480px) {
+  .heart { width: 100px; height: 100px; }
+  .heart:before, .heart:after { width: 100px; height: 100px; }
+  .heart:before { top: -50px; }
+  .heart:after { left: 50px; }
+  .name { font-size: 20px; }
+  #message { font-size: 18px; }
+  .btn { padding: 10px 25px; font-size: 14px; }
+  .heart-container { width: 150px; height: 150px; }
+  .countdown { font-size: 80px; }
+}
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<div id="intro">
+  <div class="countdown" id="countdown">3</div>
+</div>
+
+<div id="main">
+  <div class="heart-container">
+    <div class="heart">
+      <div class="name">Salma</div>
+    </div>
+  </div>
+  <div id="message"></div>
+  <div class="buttons">
+    <button class="btn yes" id="yesBtn">YES 💘</button>
+    <button class="btn no" id="noBtn">NO 😏</button>
+  </div>
+  <div id="gift">💍✨</div>
+</div>
+
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3">
+</audio>
+<audio id="pop">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_270f49b4c7.mp3">
+</audio>
+
+<script>
+const intro = document.getElementById('intro');
+const countdown = document.getElementById('countdown');
+const main = document.getElementById('main');
+const message = document.getElementById('message');
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const gift = document.getElementById('gift');
+const music = document.getElementById('music');
+const pop = document.getElementById('pop');
+const starfield = document.getElementById('stars');
+
+let clickAllowed = true;
+let hasClicked = false;
+
+// Generate Stars
+function generateStars() {
+  for (let i = 0; i < 150; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.opacity = Math.random() * 0.7 + 0.3;
+    starfield.appendChild(star);
+  }
+}
+
+// Shooting Stars
+function createShootingStar() {
+  const star = document.createElement('div');
+  star.style.position = 'fixed';
+  star.style.width = '2px';
+  star.style.height = '2px';
+  star.style.background = 'white';
+  star.style.boxShadow = '0 0 20px rgba(255,182,193,1)';
+  star.style.left = Math.random() * 100 + 'vw';
+  star.style.top = Math.random() * 50 + 'vh';
+  star.style.animation = `shootingStar ${1 + Math.random()}s linear forwards`;
+  starfield.appendChild(star);
+  setTimeout(() => star.remove(), 2000);
+}
+
+setInterval(createShootingStar, 1500);
+
+// Countdown
+function startCountdown() {
+  let count = 3;
+  const interval = setInterval(() => {
+    countdown.textContent = count;
+    count--;
+    if (count < 0) {
+      clearInterval(interval);
+      startRomance();
+    }
+  }, 1000);
+}
+
+// Start Romance
+function startRomance() {
+  try { music.play().catch(() => {}); } catch(e) {}
+  typeMessage();
+  startRoseRain();
+  startFloatingElements();
+}
+
+// Type Message
+function typeMessage() {
+  const messages = ["Love you endlessly", "My night's moon"];
+  let msgIndex = 0;
+  let charIndex = 0;
+
+  function type() {
+    const currentMsg = messages[msgIndex];
+    if (charIndex < currentMsg.length) {
+      message.textContent += currentMsg[charIndex];
+      charIndex++;
+      setTimeout(type, 100);
+    } else {
+      setTimeout(() => {
+        if (msgIndex < messages.length - 1) {
+          msgIndex++;
+          charIndex = 0;
+          message.textContent = '';
+          type();
+        }
+      }, 2000);
+    }
+  }
+  type();
+}
+
+// Rose Rain
+function startRoseRain() {
+  setInterval(() => {
+    const rose = document.createElement('div');
+    rose.className = 'rose-rain';
+    rose.innerHTML = '🌹';
+    rose.style.left = Math.random() * 100 + 'vw';
+    rose.style.animationDuration = (3 + Math.random() * 2) + 's';
+    document.body.appendChild(rose);
+    setTimeout(() => rose.remove(), 5000);
+  }, 300);
+}
+
+// Floating Elements
+function startFloatingElements() {
+  setInterval(() => {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.innerHTML = '✨';
+    sparkle.style.left = Math.random() * 100 + 'vw';
+    sparkle.style.top = Math.random() * 100 + 'vh';
+    sparkle.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
+    sparkle.style.setProperty('--ty', (Math.random() - 0.5) * 200 + 'px');
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 2000);
+  }, 400);
+
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.innerHTML = '💖';
+    heart.style.position = 'fixed';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.top = Math.random() * 100 + 'vh';
+    heart.style.fontSize = '24px';
+    heart.style.animation = 'float 8s ease-in-out infinite';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }, 1000);
+}
+
+// Cursor Trail
+document.addEventListener('mousemove', (e) => {
+  if (Math.random() > 0.8) {
+    const trail = document.createElement('div');
+    trail.className = 'heart-trail';
+    trail.innerHTML = '💖';
+    trail.style.left = e.clientX + 'px';
+    trail.style.top = e.clientY + 'px';
+    trail.style.setProperty('--tx', (Math.random() - 0.5) * 100 + 'px');
+    trail.style.setProperty('--ty', (Math.random() - 0.5) * 100 + 'px');
+    document.body.appendChild(trail);
+    setTimeout(() => trail.remove(), 1500);
+  }
+});
+
+// Particle Explosion
+function createParticles(x, y, count = 50) {
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      const emojis = ['💖', '🌹', '✨', '💕'];
+      particle.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+      particle.style.left = x + 'px';
+      particle.style.top = y + 'px';
+      particle.style.fontSize = '24px';
+
+      const angle = (Math.PI * 2 * i) / count;
+      const velocity = 100 + Math.random() * 200;
+      particle.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+      particle.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+
+      document.body.appendChild(particle);
+      setTimeout(() => particle.remove(), 3000);
+    }, i * 20);
+  }
+}
+
+// YES Button
+yesBtn.onclick = () => {
+  if (!clickAllowed) return;
+  clickAllowed = false;
+  
+  try { pop.play().catch(() => {}); } catch(e) {}
+  
+  gift.style.opacity = 1;
+  createParticles(window.innerWidth / 2, window.innerHeight / 2, 80);
+
+  for (let i = 0; i < 15; i++) {
+    setTimeout(() => {
+      createParticles(Math.random() * window.innerWidth, -50, 30);
+    }, i * 150);
+  }
+
+  setTimeout(() => {
+    message.innerHTML = '💕 Forever Yours 💕<br>Will you be mine?';
+    message.style.fontSize = '36px';
+  }, 800);
+
+  yesBtn.disabled = true;
+  noBtn.disabled = true;
+};
+
+// NO Button (Runaway)
+noBtn.onmouseover = () => {
+  if (!clickAllowed) return;
+  noBtn.style.position = 'fixed';
+  noBtn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+  noBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+};
+
+// First Click Start Music
+document.addEventListener('click', () => {
+  if (!hasClicked) {
+    hasClicked = true;
+    try { music.play().catch(() => {}); } catch(e) {}
+  }
+});
+
+// Initialize
+generateStars();
+startCountdown();
+</script>
+
+</body>
+</html>
