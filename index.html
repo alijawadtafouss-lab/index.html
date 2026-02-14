@@ -3,48 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💖 Hyper Mega GOD MODE 2026 VR Edition</title>
+<title>💖 Ultimate Luxury Love 2026</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI;}
-body{
-  background: radial-gradient(circle at top,#120018,#000);
-  height:100vh; overflow:hidden; color:white;
-  display:flex; justify-content:center; align-items:center; text-align:center;
-  transition:background 5s linear infinite;
-}
-#countdown{position:fixed; inset:0; background:black; display:flex; justify-content:center; align-items:center; font-size:5rem; color:#ff2d75; text-shadow:0 0 30px #ff2d75; z-index:1000;}
-#main{display:none; width:100%; height:100%; position:relative;}
-.galaxy{position:fixed; inset:0; background: radial-gradient(circle at 30% 30%,rgba(255,45,117,.15),transparent), radial-gradient(circle at 70% 70%,rgba(111,0,255,.12),transparent); animation:galaxyMove 12s linear infinite; z-index:-1;}
-.shoot{position:fixed; width:2px; height:80px; background:linear-gradient(#fff,transparent); transform:rotate(45deg); opacity:.8; animation:shoot 2s linear forwards;}
-.heart{position:relative; width:160px; height:160px; background:linear-gradient(45deg,#ff2d75,#ff6fa5,#a855f7); transform:rotate(-45deg); animation:beat 1.1s infinite; box-shadow:0 0 60px #ff2d75; margin:auto;}
-.heart:before,.heart:after{content:""; position:absolute;width:160px;height:160px;background:inherit;border-radius:50%;}
-.heart:before{top:-80px;} .heart:after{left:80px;}
-.name{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(45deg); font-size:28px; font-weight:bold; text-shadow:0 0 25px #fff,0 0 50px #ff9ecb;}
-#typing{margin-top:25px; font-size:24px; color:#ff9ecb; min-height:28px;}
+body{height:100vh; overflow:hidden; display:flex; justify-content:center; align-items:center; text-align:center; background:linear-gradient(135deg,#120018,#000);}
+#main{position:relative;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;}
+.heart{position:relative;width:180px;height:180px;transform:rotate(-45deg);animation:beat 1.1s infinite; background:linear-gradient(45deg,#ff2d75,#ff6fa5,#a855f7); border-radius:20px;box-shadow:0 0 80px #ff2d75;}
+.heart:before,.heart:after{content:"";position:absolute;width:180px;height:180px;background:inherit;border-radius:50%;}
+.heart:before{top:-90px;} .heart:after{left:90px;}
+.name{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(45deg); font-size:32px; font-weight:bold; text-shadow:0 0 25px #fff,0 0 60px #ff9ecb;}
+#typing{margin-top:30px; font-size:24px; color:#ff9ecb; min-height:28px;}
 .buttons{margin-top:30px; display:flex; gap:15px; justify-content:center;}
-.btn{padding:10px 26px; border:none; border-radius:25px; font-size:18px; cursor:pointer;}
+.btn{padding:12px 28px; border:none; border-radius:25px; font-size:18px; cursor:pointer;}
 .yes{background:#ff2d75; color:white; box-shadow:0 0 25px #ff2d75;}
 .no{background:#333; color:white; position:relative;}
-#gift{margin-top:20px; font-size:50px; opacity:0; transition:.5s;}
-#shot{position:fixed;bottom:15px;right:15px;padding:8px 14px;border:none;border-radius:20px;background:#ff2d75;color:white;cursor:pointer;}
-.small-heart{position:fixed; animation:floatUp linear infinite;}
+#gift{margin-top:20px; font-size:60px; opacity:0; transition:.5s;}
+.small-heart{position:fixed; font-size:24px; animation:floatUp linear infinite;}
 .sparkle{position:fixed; font-size:20px; animation:floatUp linear infinite; opacity:.8;}
 .rose{position:fixed; font-size:20px; animation:fall linear infinite;}
+@keyframes beat{0%,100%{transform:rotate(-45deg) scale(1);}50%{transform:rotate(-45deg) scale(1.18);}}
 @keyframes floatUp{from{transform:translateY(100vh);opacity:0;} to{transform:translateY(-10vh);opacity:1;}}
 @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0;}}
-@keyframes beat{0%,100%{transform:rotate(-45deg) scale(1);}50%{transform:rotate(-45deg) scale(1.15);}}
-@keyframes galaxyMove{0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
-@keyframes shoot{to{transform:translate(600px,600px) rotate(45deg);opacity:0;}}
 </style>
 </head>
-
 <body>
-
-<div id="countdown">3</div>
-
 <div id="main">
-  <div class="galaxy"></div>
-  <div class="heart"><div class="name">salma <span style="font-size:16px">(sghira)</span></div></div>
+  <div class="heart"><div class="name">salma <span style="font-size:18px">(sghira)</span></div></div>
   <div id="typing"></div>
   <div class="buttons">
     <button class="btn yes" id="yesBtn">YES 💘</button>
@@ -52,8 +36,6 @@ body{
   </div>
   <div id="gift">💍✨</div>
 </div>
-
-<button id="shot">📸 Screenshot</button>
 
 <audio id="music" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3">
@@ -63,34 +45,25 @@ body{
 </audio>
 
 <script>
-const countdown=document.getElementById("countdown");
-const main=document.getElementById("main");
+const typingEl=document.getElementById("typing");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const gift=document.getElementById("gift");
 const music=document.getElementById("music");
 const pop=document.getElementById("pop");
 
-let n=3;
-const cd=setInterval(()=>{
-  n--;
-  if(n===0){
-    clearInterval(cd);
-    countdown.style.display="none";
-    main.style.display="block";
-    music.play();
-    typing(); hearts(); sparkles(); roses(); shootingStars(); confetti(); dynamicBg();
-  }
-  countdown.textContent=n;
-},1000);
+window.addEventListener("click",()=>{music.play();}, {once:true});
 
-function typing(){
+function typeMessage(){
   const text="كنبغيك بزاف… وعمري نقدر نعيش بلا بيك ❤️";
   let i=0;
-  const el=document.getElementById("typing");
   const t=setInterval(()=>{
-    el.textContent+=text[i];
+    typingEl.textContent+=text[i];
     i++;
     if(i>=text.length) clearInterval(t);
   },60);
 }
+typeMessage();
 
 yesBtn.onclick=()=>{
   pop.play();
@@ -109,20 +82,20 @@ function hearts(){
   setInterval(()=>{
     const h=document.createElement("div");
     h.className="small-heart"; h.innerHTML="💖";
-    h.style.left=Math.random()*100+"vw"; h.style.animationDuration=(4+Math.random()*3)+"s";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(4+Math.random()*3)+"s";
     document.body.appendChild(h); setTimeout(()=>h.remove(),7000);
-  },900);
+  },700);
 }
 
 function sparkles(){
   setInterval(()=>{
-    const s=document.createElement("div"); s.innerHTML="✨";
-    s.className="sparkle";
+    const s=document.createElement("div");
+    s.className="sparkle"; s.innerHTML="✨";
     s.style.left=Math.random()*100+"vw";
     s.style.animationDuration=(4+Math.random()*2)+"s";
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),7000);
-  },700);
+    document.body.appendChild(s); setTimeout(()=>s.remove(),7000);
+  },600);
 }
 
 function roses(){
@@ -131,20 +104,8 @@ function roses(){
     r.className="rose"; r.innerHTML="🌹";
     r.style.left=Math.random()*100+"vw";
     r.style.animationDuration=(4+Math.random()*3)+"s";
-    document.body.appendChild(r);
-    setTimeout(()=>r.remove(),7000);
+    document.body.appendChild(r); setTimeout(()=>r.remove(),7000);
   },500);
-}
-
-function shootingStars(){
-  setInterval(()=>{
-    const s=document.createElement("div");
-    s.className="shoot";
-    s.style.left=Math.random()*80+"%";
-    s.style.top=Math.random()*40+"%";
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),2000);
-  },4000);
 }
 
 function particleExplosion(){
@@ -162,31 +123,20 @@ function particleExplosion(){
 }
 
 function particleExplosionBig(){
-  for(let i=0;i<120;i++){
+  for(let i=0;i<100;i++){
     setTimeout(()=>{
       const p=document.createElement("div");
-      p.className="small-heart";
-      p.innerHTML=["💖","🌹","✨"][Math.floor(Math.random()*3)];
+      p.className="small-heart"; p.innerHTML=["💖","🌹","✨"][Math.floor(Math.random()*3)];
       p.style.left=(window.innerWidth/2 + (Math.random()*400-200))+"px";
       p.style.top=(window.innerHeight/2 + (Math.random()*400-200))+"px";
       p.style.animationDuration=(2+Math.random()*2)+"s";
       document.body.appendChild(p);
       setTimeout(()=>p.remove(),6000);
-    },i*15);
+    },i*20);
   }
 }
 
-function dynamicBg(){
-  let colors=['#ff2d75','#ff6fa5','#a855f7','#ffb347','#ff9ecb'];
-  let i=0;
-  setInterval(()=>{
-    document.body.style.background=`linear-gradient(to right, ${colors[i]}, ${colors[(i+1)%colors.length]})`;
-    i=(i+1)%colors.length;
-  },5000);
-}
-
-shot.onclick=()=>{alert("📸 Screenshot from your device 😉");}
+hearts(); sparkles(); roses();
 </script>
-
 </body>
 </html>
