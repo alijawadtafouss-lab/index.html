@@ -28,6 +28,74 @@ body {
 #stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 .star { position: absolute; width: 1px; height: 1px; background: white; border-radius: 50%; }
 
+#settings {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 500;
+  background: rgba(0,0,0,0.7);
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid rgba(255,182,193,0.5);
+  max-width: 300px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: white;
+}
+
+.settings-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #ff69b4;
+  text-align: center;
+}
+
+.setting-group {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255,182,193,0.3);
+}
+
+.setting-group:last-child {
+  border-bottom: none;
+}
+
+.setting-label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #ffb6c1;
+}
+
+.setting-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-btn {
+  padding: 8px 12px;
+  background: rgba(255,182,193,0.2);
+  border: 1px solid rgba(255,182,193,0.5);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s;
+}
+
+.option-btn:hover {
+  background: rgba(255,182,193,0.4);
+  border-color: rgba(255,182,193,0.8);
+}
+
+.option-btn.active {
+  background: linear-gradient(135deg, #ff1493, #ff69b4);
+  border-color: #ff1493;
+  box-shadow: 0 0 10px rgba(255,20,147,0.6);
+}
+
 #intro {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0,0,0,0.95);
@@ -64,7 +132,7 @@ body {
 
 .heart {
   width: 200px; height: 200px;
-  background: linear-gradient(135deg, #ff1493, #ff69b4);
+  background: var(--heart-color, linear-gradient(135deg, #ff1493, #ff69b4));
   position: relative;
   border-radius: 100px 100px 0 0;
   transform: rotate(-45deg);
@@ -172,6 +240,7 @@ body {
   #message { font-size: 22px; }
   .btn { padding: 12px 30px; font-size: 16px; }
   .heart-container { width: 200px; height: 200px; }
+  #settings { right: 10px; top: 10px; max-width: 250px; }
 }
 
 @media (max-width: 480px) {
@@ -184,12 +253,70 @@ body {
   .btn { padding: 10px 25px; font-size: 14px; }
   .heart-container { width: 150px; height: 150px; }
   .countdown { font-size: 80px; }
+  #settings { right: 5px; top: 5px; max-width: 200px; padding: 15px; }
+  .setting-label { font-size: 12px; }
+  .option-btn { padding: 6px 10px; font-size: 11px; }
 }
 </style>
 </head>
 <body>
 
 <div id="stars"></div>
+
+<div id="settings">
+  <div class="settings-title">⚙️ SETTINGS</div>
+  
+  <div class="setting-group">
+    <div class="setting-label">🎨 BACKGROUND</div>
+    <div class="setting-options">
+      <button class="option-btn active" onclick="setBg('gradient1')">Pink-Purple</button>
+      <button class="option-btn" onclick="setBg('gradient2')">Red-Gold</button>
+      <button class="option-btn" onclick="setBg('gradient3')">Purple-Pink</button>
+      <button class="option-btn" onclick="setBg('gradient4')">Blue-Green</button>
+      <button class="option-btn" onclick="setBg('gradient5')">Dark Night</button>
+    </div>
+  </div>
+
+  <div class="setting-group">
+    <div class="setting-label">❤️ HEART COLOR</div>
+    <div class="setting-options">
+      <button class="option-btn active" onclick="setHeartColor('pink')">Pink</button>
+      <button class="option-btn" onclick="setHeartColor('red')">Red</button>
+      <button class="option-btn" onclick="setHeartColor('purple')">Purple</button>
+      <button class="option-btn" onclick="setHeartColor('gold')">Gold</button>
+      <button class="option-btn" onclick="setHeartColor('rainbow')">Rainbow</button>
+    </div>
+  </div>
+
+  <div class="setting-group">
+    <div class="setting-label">✨ EFFECTS</div>
+    <div class="setting-options">
+      <button class="option-btn active" onclick="toggleEffect('sparkles')">✨ Sparkles</button>
+      <button class="option-btn active" onclick="toggleEffect('roses')">🌹 Roses</button>
+      <button class="option-btn active" onclick="toggleEffect('hearts')">💖 Hearts</button>
+      <button class="option-btn" onclick="toggleEffect('lightning')">⚡ Lightning</button>
+      <button class="option-btn" onclick="toggleEffect('confetti')">🎆 Confetti</button>
+    </div>
+  </div>
+
+  <div class="setting-group">
+    <div class="setting-label">🎵 SOUND</div>
+    <div class="setting-options">
+      <button class="option-btn active" onclick="toggleSound(true)">🔊 ON</button>
+      <button class="option-btn" onclick="toggleSound(false)">🔇 OFF</button>
+    </div>
+  </div>
+
+  <div class="setting-group">
+    <div class="setting-label">🎭 THEME</div>
+    <div class="setting-options">
+      <button class="option-btn active" onclick="setTheme('romantic')">Romantic</button>
+      <button class="option-btn" onclick="setTheme('dreamy')">Dreamy</button>
+      <button class="option-btn" onclick="setTheme('passion')">Passion</button>
+      <button class="option-btn" onclick="setTheme('elegant')">Elegant</button>
+    </div>
+  </div>
+</div>
 
 <div id="intro">
   <div class="countdown" id="countdown">3</div>
@@ -227,9 +354,71 @@ const gift = document.getElementById('gift');
 const music = document.getElementById('music');
 const pop = document.getElementById('pop');
 const starfield = document.getElementById('stars');
+const body = document.body;
 
 let clickAllowed = true;
 let hasClicked = false;
+let soundEnabled = true;
+let activeEffects = { sparkles: true, roses: true, hearts: true, lightning: false, confetti: true };
+
+// Gradients
+const gradients = {
+  gradient1: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)',
+  gradient2: 'linear-gradient(-45deg, #ff0000, #ffd700, #ff6347, #ffa500)',
+  gradient3: 'linear-gradient(-45deg, #9370db, #ee7752, #e73c7e, #9370db)',
+  gradient4: 'linear-gradient(-45deg, #1e90ff, #00ced1, #32cd32, #87ceeb)',
+  gradient5: 'linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #1a1a2e)'
+};
+
+// Heart Colors
+const heartColors = {
+  pink: 'linear-gradient(135deg, #ff1493, #ff69b4)',
+  red: 'linear-gradient(135deg, #ff0000, #dc143c)',
+  purple: 'linear-gradient(135deg, #9932cc, #ba55d3)',
+  gold: 'linear-gradient(135deg, #ffd700, #ffed4e)',
+  rainbow: 'conic-gradient(#ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000)'
+};
+
+function setBg(gradientName) {
+  body.style.background = gradients[gradientName];
+  body.style.backgroundSize = '400% 400%';
+  body.style.animation = 'gradient 15s ease infinite';
+  document.querySelectorAll('[onclick*="setBg"]').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function setHeartColor(colorName) {
+  const heart = document.querySelector('.heart');
+  heart.style.setProperty('--heart-color', heartColors[colorName]);
+  document.querySelectorAll('[onclick*="setHeartColor"]').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function toggleEffect(effectName) {
+  activeEffects[effectName] = !activeEffects[effectName];
+  event.target.classList.toggle('active');
+}
+
+function toggleSound(enabled) {
+  soundEnabled = enabled;
+  document.querySelectorAll('[onclick*="toggleSound"]').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function setTheme(themeName) {
+  const themes = {
+    romantic: { bg: 'gradient1', heart: 'pink' },
+    dreamy: { bg: 'gradient3', heart: 'purple' },
+    passion: { bg: 'gradient2', heart: 'red' },
+    elegant: { bg: 'gradient5', heart: 'gold' }
+  };
+  if (themes[themeName]) {
+    setBg(themes[themeName].bg);
+    setHeartColor(themes[themeName].heart);
+  }
+  document.querySelectorAll('[onclick*="setTheme"]').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
 
 // Generate Stars
 function generateStars() {
@@ -275,9 +464,9 @@ function startCountdown() {
 
 // Start Romance
 function startRomance() {
-  try { music.play().catch(() => {}); } catch(e) {}
+  if (soundEnabled) try { music.play().catch(() => {}); } catch(e) {}
   typeMessage();
-  startRoseRain();
+  if (activeEffects.roses) startRoseRain();
   startFloatingElements();
 }
 
@@ -309,7 +498,11 @@ function typeMessage() {
 
 // Rose Rain
 function startRoseRain() {
-  setInterval(() => {
+  const roseInterval = setInterval(() => {
+    if (!activeEffects.roses) {
+      clearInterval(roseInterval);
+      return;
+    }
     const rose = document.createElement('div');
     rose.className = 'rose-rain';
     rose.innerHTML = '🌹';
@@ -322,29 +515,33 @@ function startRoseRain() {
 
 // Floating Elements
 function startFloatingElements() {
-  setInterval(() => {
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-    sparkle.innerHTML = '✨';
-    sparkle.style.left = Math.random() * 100 + 'vw';
-    sparkle.style.top = Math.random() * 100 + 'vh';
-    sparkle.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
-    sparkle.style.setProperty('--ty', (Math.random() - 0.5) * 200 + 'px');
-    document.body.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 2000);
-  }, 400);
+  if (activeEffects.sparkles) {
+    setInterval(() => {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.innerHTML = '✨';
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.top = Math.random() * 100 + 'vh';
+      sparkle.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
+      sparkle.style.setProperty('--ty', (Math.random() - 0.5) * 200 + 'px');
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 2000);
+    }, 400);
+  }
 
-  setInterval(() => {
-    const heart = document.createElement('div');
-    heart.innerHTML = '💖';
-    heart.style.position = 'fixed';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.top = Math.random() * 100 + 'vh';
-    heart.style.fontSize = '24px';
-    heart.style.animation = 'float 8s ease-in-out infinite';
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 8000);
-  }, 1000);
+  if (activeEffects.hearts) {
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.innerHTML = '💖';
+      heart.style.position = 'fixed';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = Math.random() * 100 + 'vh';
+      heart.style.fontSize = '24px';
+      heart.style.animation = 'float 8s ease-in-out infinite';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }, 1000);
+  }
 }
 
 // Cursor Trail
@@ -390,7 +587,7 @@ yesBtn.onclick = () => {
   if (!clickAllowed) return;
   clickAllowed = false;
   
-  try { pop.play().catch(() => {}); } catch(e) {}
+  if (soundEnabled) try { pop.play().catch(() => {}); } catch(e) {}
   
   gift.style.opacity = 1;
   createParticles(window.innerWidth / 2, window.innerHeight / 2, 80);
@@ -422,7 +619,7 @@ noBtn.onmouseover = () => {
 document.addEventListener('click', () => {
   if (!hasClicked) {
     hasClicked = true;
-    try { music.play().catch(() => {}); } catch(e) {}
+    if (soundEnabled) try { music.play().catch(() => {}); } catch(e) {}
   }
 });
 
